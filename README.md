@@ -18,6 +18,7 @@ Data records will be supplied with a primary key.
 
 You would begin by instantiating a new class of the required variant, in this case the multiple file version with the relevant login information already formatted as an AWS secret for the code to to utilise.
 
+```
 obfuscator = MultiFormatObfuscator(secret_name="your-secret-name")
 
 event = {
@@ -47,3 +48,4 @@ obfuscated_content = result["body"]
         Body=obfuscated_content,
         ContentType=result["headers"]["Content-Type"]
     )
+```
