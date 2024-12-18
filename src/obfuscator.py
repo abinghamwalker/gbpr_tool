@@ -56,6 +56,7 @@ class S3CSVObfuscator:
     def _initialise_with_secrets(self, secret_name: str, region: str):
         """
         Initialise AWS client with credentials from Secrets Manager
+        
         Raises:
          Exception: If initialization fails
         """
@@ -86,8 +87,10 @@ class S3CSVObfuscator:
 
         Parameters:
             s3_uri: S3 URI (e.g., 's3://bucket/path/file.csv')
+            
         Raises:
             ValueError: S3 URI is not correct format
+            
         Returns:
             Dictionary containing bucket and key
         """
@@ -105,8 +108,10 @@ class S3CSVObfuscator:
         Parameters:
             bucket: S3 bucket name
             key: S3 object key
+            
         Raises:
             Exception: Error handling in file retrieval
+            
         Returns:
             CSV content as string
         """
@@ -124,9 +129,11 @@ class S3CSVObfuscator:
         Parameters:
             content: Raw CSV content
             pii_fields: List of fields to obfuscate
+            
         Raises:
             ValueError: if pii_fields are not in headers or CSV is empty
             Exception: if processing fails
+            
         Returns:
             Obfuscated CSV content as string
         """
@@ -164,9 +171,11 @@ class S3CSVObfuscator:
 
         Parameters:
             Dictionary containing file_to_obfuscate and pii_fields
+            
         Raises:
             ValueError: missing file or fields data
             Exception: processing error
+            
         Returns:
             Dictionary with status code and response body
         """
