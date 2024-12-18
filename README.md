@@ -2,11 +2,11 @@
 
 ## Context
 
-The purpose of this project is to create a general-purpose tool to process data being ingested to AWS and intercept personally identifiable information (PII). All information stored by Northcoders data projects should be for bulk data analysis only. Consequently, there is a requirement under GDPR to ensure that all data containing information that can be used to identify an individual should be anonymised.
+The purpose of this project is to create a general-purpose tool written in Python to process data being ingested to AWS and intercept personally identifiable information (PII). All information stored by Northcoders data projects should be for bulk data analysis only. Consequently, there is a requirement under GDPR to ensure that all data containing information that can be used to identify an individual should be anonymised.
 
 ## Completion notes
 
-I have created two versions implemented by creating clases, the first is S3CSVObfuscator which will conceal required files in a CSV file type. The second is an expanded version called MultiFormatObfuscator which expands out to two further file types, JSON and parquet. This tool will replace requested fields with \*\*\*\*. This was intentional because I did considering implementing a system that would put one star per character of input, however, this would in a small way compromise the data security of the students.
+I have created two versions implemented by creating clases, the first is S3CSVObfuscator which will conceal required files in a CSV file type. The second is an expanded version called MultiFormatObfuscator which expands out to two further file types, JSON and parquet. This tool will replace requested fields with "****". This was intentional because I did consider implementing a system that would put one star per character of input, however, this would in a small way compromise the data security the students and so decided against it.
 
 ## Assumptions and Prerequisites
 
@@ -26,9 +26,11 @@ event = {
 "pii_fields": ["email"]
 }
 result = obfuscator.process_request(event)
+```
 
 The obfuscated information is returned by the process request method, should you wish to save this to a new S3 file location the following code can extract this data.
 
+```
 event = {
 "file_to_obfuscate": "s3://bucket/path/northcoders_data.csv",
 "pii_fields": ["email"]
