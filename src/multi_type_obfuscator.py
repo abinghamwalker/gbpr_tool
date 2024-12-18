@@ -98,8 +98,10 @@ class MultiFormatObfuscator:
 
         Parameters:
             s3_uri: S3 URI (e.g., 's3://bucket/path/file.csv')
+            
         Raises:
             ValueError: S3 URI is not correct format
+            
         Returns:
             Dictionary containing bucket and key
         """
@@ -115,11 +117,12 @@ class MultiFormatObfuscator:
 
         Parameters:
             file_path: S3 object file path
+            
         Raises:
             ValueError: File type is not CSV, JSON or Parquet
+            
         Returns:
             File type as string
-
         """
         extension = file_path.lower().split(".")[-1]
         if extension not in ["csv", "parquet", "json"]:
@@ -129,13 +132,15 @@ class MultiFormatObfuscator:
     def _get_file_from_s3(self, bucket: str, key: str) -> bytes:
         """
         Retrieve the file type from S3
+        
         Parameters:
             file_path: S3 object file path
+            
         Raises:
             ValueError: File type is not CSV, JSON or Parquet
+            
         Returns:
             File type as string
-
         """
         try:
             response = self.s3_client.get_object(Bucket=bucket, Key=key)
@@ -174,13 +179,14 @@ class MultiFormatObfuscator:
         Obfuscate specified fields in CSV content
 
         Parameters:
-
             content: Raw bytes
             pii_fields: List of fields to obfuscate
+            
         Raises:
             ValueError: if pii_fields are not in headers
             ValueError: if CSV is empty
             Exception: process fails
+            
         Returns:
             Obfuscated CSV content
         """
@@ -318,9 +324,11 @@ class MultiFormatObfuscator:
 
         Parameters:
             Dictionary containing file_to_obfuscate and pii_fields
+            
         Raises:
             ValueError: missing file or fields data
             Exception: processing error
+            
         Returns
             Dictionary with status code and response body
         """
@@ -373,6 +381,7 @@ def lambda_handler(event, context):
         "file_to_obfuscate": "s3://bucket/path/file.csv",
         "pii_fields": ["field1", "field2"]
     }
+    
     Raises:
         ValueError: is missing login credentials
         Exeption: error handling from the process
