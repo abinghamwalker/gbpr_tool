@@ -218,7 +218,6 @@ class MultiFormatObfuscator:
             logger.error(f"Error processing CSV: {str(er_info)}")
             raise
 
-
     def _obfuscate_json(self, json_content: bytes, pii_fields: List[str]) -> Tuple[str, str]:
         """Handle JSON format
         Obfuscate specified fields in JSON content
@@ -317,7 +316,6 @@ class MultiFormatObfuscator:
         except Exception as er_info:
             raise Exception(f"Error processing Parquet: {str(er_info)}")
 
-
     def process_request(self, event: Dict) -> Dict:
         """
         Process the obfuscation request
@@ -343,7 +341,7 @@ class MultiFormatObfuscator:
 
             s3_location = self._parse_s3_uri(file_to_obfuscate)
             file_format = self._get_file_format(s3_location["key"])
-            content=self._get_file_from_s3(s3_location["bucket"],s3_location["key"])
+            content = self._get_file_from_s3(s3_location["bucket"], s3_location["key"])
 
             if file_format == "csv":
                 output_content, content_type = self._obfuscate_csv(content, pii_fields)
