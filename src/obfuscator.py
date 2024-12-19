@@ -98,7 +98,7 @@ class S3CSVObfuscator:
             raise ValueError(f"Invalid S3 URI format: {s3_uri}")
 
         parts = s3_uri[5:].split("/", 1)
-            
+        
         return {"bucket": parts[0], "key": parts[1]}
 
     def _get_csv_from_s3(self, bucket: str, key: str) -> str:
@@ -234,3 +234,4 @@ def lambda_handler(event, context):
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}")
         return {"statusCode": 500, "body": json.dumps({"error": str(e)})}
+    
