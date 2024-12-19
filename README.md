@@ -52,4 +52,4 @@ obfuscated_content = result["body"]
     )
 ```
 
-This code has 99% coverage and is fully tested in black, security and flake 8 for consistency and lack of vulnerability.
+This code has 99% coverage and is fully tested in black, bandit, security and flake 8 for consistency and lack of vulnerability.
